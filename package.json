@@ -1,0 +1,19 @@
+{
+  "name": "bot_discord",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon .",
+    "format": "prettier . --write"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "commandkit": "^0.1.10",
+    "discord.js": "^14.15.2",
+    "dotenv": "^16.4.5",
+    "prettier": "^3.2.5"
+  }
+}

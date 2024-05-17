@@ -1,0 +1,10 @@
+/node_modules/
+
+.prettierrc.json
+package.json
+
+.env
+
+.DS_Store
+
+.gitignore
