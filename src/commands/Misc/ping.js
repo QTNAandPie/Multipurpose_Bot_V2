@@ -1,7 +1,7 @@
 module.exports = {
     data: {
-        name: 'ping',
-        description: 'Test bot ping!',
+        name: "ping",
+        description: "Test bot ping!"
     },
 
     run: async ({ client, interaction }) => {
@@ -11,8 +11,6 @@ module.exports = {
 
         const ping = reply.createdTimestamp - interaction.createdTimestamp;
 
-        interaction.editReply(
-            `Pong! Client ${ping}ms | Websocket: ${client.ws.ping}ms`,
-        );
-    },
+        interaction.editReply(`Pong! Client ${ping}ms | Websocket: ${client.ws.ping}ms`);
+    }
 };

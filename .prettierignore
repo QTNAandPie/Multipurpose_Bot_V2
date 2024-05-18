@@ -1,7 +1,10 @@
 /node_modules/
 
 .prettierrc.json
+package-lock.json
 package.json
+
+run.bat
 
 .env
 
