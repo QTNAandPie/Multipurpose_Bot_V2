@@ -64,6 +64,6 @@ module.exports = {
         user.balance += amountWon;
         await user.save();
 
-        interaction.editReply(`WooW, you won +$${amountWon}!.\nYour balance now is: $${user.balance}`);
+        interaction.editReply(`WooW, you won **+$${amountWon}**!.\nYour balance now is: **$${user.balance}**`);
     }
 };
