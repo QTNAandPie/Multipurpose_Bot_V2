@@ -3,6 +3,7 @@ The bot working perfectly in Javascript (Maybe got the small issue to run so don
 
 ## Requirements
 - [NodeJS](https://nodejs.org/en/) - Version 16 or higher
+- [Bun](https://bun.sh/) - If you use Macos or Linux (Now on Window)
 - [NPM](https://www.npmjs.com/)
 
 ## Contributing
