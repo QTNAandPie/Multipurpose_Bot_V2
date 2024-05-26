@@ -4,3 +4,11 @@ The bot working perfectly in Javascript (Maybe got the small issue to run so don
 ## Requirements
 - [NodeJS](https://nodejs.org/en/) - Version 16 or higher
 - [NPM](https://www.npmjs.com/)
+
+## Contributing
+You are welcome the contribute by submitting the positive Pull Request to the repository
+
+## Issues
+If you got the problems when using this repository, you can send the issue to help developer fixing the issue
+
+Peace <3
