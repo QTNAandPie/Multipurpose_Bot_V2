@@ -3,15 +3,15 @@ const User = require("../../schemas/user");
 
 async function CreateandUpdate(guildId, mentionId) {
     const newUser = await User.findOne({ guildId: guildId, userId: mentionId });
-        if (!newUser) {
-            const newUserDatabase = new User({
-                userId: mentionId,
-                guildId: guildId,
-                balance: 0,
-                bank: 0
-            });
-            await newUserDatabase.save();
-        }
+    if (!newUser) {
+        const newUserDatabase = new User({
+            userId: mentionId,
+            guildId: guildId,
+            balance: 0,
+            bank: 0
+        });
+        await newUserDatabase.save();
+    }
 }
 
 module.exports = {
