@@ -1,12 +1,16 @@
 # Multipurpose Bot V2 Repository
-The bot working perfectly in Javascript (Maybe got the small issue to run so don't worry ^^). This is also the template for beginner to make the bot from discord.js
+This bot was created via Javascript (Maybe got the small issue to run so don't worry ^^). This bot run with slash command, making easy to run command. This is also the template for beginner to make the bot from discord.js
 
 ## Requirements
-<h4>Javascript Runtime</h4>
-[NodeJS](https://nodejs.org/) or [Bun](https://bun.sh/)
+Javascript Runtime (Depending on your choice):
 
-<h4>Package</h4>
-[NPM](https://npmjs.com/)
+- [NodeJS](https://nodejs.org/)
+- [Bun](https://bun.sh/)
+- [PNPM](https://pnpm.io/)
+- [Yarn](https://yarnpkg.com/)
+
+Package:
+- [NPM](https://npmjs.com/)
 
 ## Contributing
 You are welcome the contribute by submitting the positive Pull Request to the repository
