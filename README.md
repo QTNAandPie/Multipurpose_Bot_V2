@@ -2,9 +2,11 @@
 The bot working perfectly in Javascript (Maybe got the small issue to run so don't worry ^^). This is also the template for beginner to make the bot from discord.js
 
 ## Requirements
-- [NodeJS](https://nodejs.org/en/) - Version 16 or higher
-- [Bun](https://bun.sh/) - If you use Macos or Linux (Now on Window)
-- [NPM](https://www.npmjs.com/)
+<h4>Javascript Runtime</h4>
+[NodeJS](https://nodejs.org/) or [Bun](https://bun.sh/)
+
+<h4>Package</h4>
+[NPM](https://npmjs.com/)
 
 ## Contributing
 You are welcome the contribute by submitting the positive Pull Request to the repository
