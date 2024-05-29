@@ -16,35 +16,27 @@ module.exports = {
     },
 
     run: async ({ interaction, client }) => {
-        if (!interaction.inGuild()) {
-            interaction.reply("You can only run this command inside a server.");
-        }
-
         try {
             const amount = interaction.options.getNumber("amount");
 
-            await interaction.deferReply();
-
-            const targetUserId = interaction.member.id;
-
-            const user = await User.findOne({
-                userId: targetUserId,
-                guildId: interaction.guild.id
-            });
+            const user = await User.findOne({ userId: interaction.user.id, guildId: interaction.guild.id });
 
             if (amount > user.bank) {
-                interaction.editReply("You don't have enough money to withdraw");
+                await interaction.reply("You don't have enough money to withdraw");
+                return;
             }
 
             const amountWithdraw = Number(amount);
 
             user.balance += amountWithdraw;
             user.bank -= amountWithdraw;
+
             await user.save();
 
-            interaction.editReply(`You withdraw **$${amount}** from your bank\nYour bank now have **$${user.bank}**`);
+            interaction.reply(`You withdraw **$${amount}** from your bank\nNow your bank have **$${user.bank.toLocaleString()}**`);
         } catch (error) {
-            console.log(error);
+            interaction.reply("Failed to withdraw. Please try again");
+            console.log("Failed to withdraw" + error);
         }
     }
 };

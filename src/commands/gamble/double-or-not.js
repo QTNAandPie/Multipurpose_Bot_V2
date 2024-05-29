@@ -22,48 +22,46 @@ module.exports = {
     },
 
     run: async ({ interaction, client }) => {
-        if (!interaction.inGuild()) {
-            interaction.reply("You can only run this command inside a server.");
-            return;
-        }
+        try {
+            const amount = interaction.options.getNumber("amount");
 
-        await interaction.deferReply();
+            let user = await User.findOne({
+                userId: interaction.user.id
+            });
 
-        const amount = interaction.options.getNumber("amount");
+            if (amount < 50) {
+                await interaction.reply("You must insert at least $50");
+                return;
+            }
 
-        if (amount < 50) {
-            interaction.reply("You must insert at least $50");
-            return;
-        }
+            if (amount > user.balance) {
+                await interaction.reply("You don't have enough balance to insert");
+                return;
+            }
 
-        let user = await User.findOne({
-            userId: interaction.user.id
-        });
+            let loseReplyString = ["Oh, your luck so bad. Try again if you can show your luck", "What the bad luck here? You lose there :<"];
 
-        if (amount > user.balance) {
-            interaction.editReply("You don't have enough balance to insert");
-            return;
-        }
+            const randomLoseString = randomArray(loseReplyString);
 
-        let loseReplyString = ["Oh, your luck so bad. Try again if you can show your luck", "What the bad luck here? You lose there :<"];
+            const didWin = Math.random() > 0.5; // Like 50/50
 
-        const randomLoseString = randomArray(loseReplyString);
+            if (!didWin) {
+                user.balance -= amount;
+                await user.save();
 
-        const didWin = Math.random() > 0.5;
+                await interaction.reply(`${randomLoseString}`);
+                return;
+            }
 
-        if (!didWin) {
-            user.balance -= amount;
+            const amountWon = Number(amount);
+
+            user.balance += amountWon;
             await user.save();
 
-            interaction.editReply(`${randomLoseString}`);
-            return;
+            interaction.reply(`WooW, you won **+$${amountWon}**!.\nYour balance now is: **$${user.balance}**`);
+        } catch (error) {
+            console.log("Failed to play" + error);
+            interaction.reply("Failed to play");
         }
-
-        const amountWon = Number(amount);
-
-        user.balance += amountWon;
-        await user.save();
-
-        interaction.editReply(`WooW, you won **+$${amountWon}**!.\nYour balance now is: **$${user.balance}**`);
     }
 };

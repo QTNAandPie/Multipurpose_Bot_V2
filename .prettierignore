@@ -4,6 +4,7 @@
 package-lock.json
 package.json
 
+README.md
 run.bat
 
 .env

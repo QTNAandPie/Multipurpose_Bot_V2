@@ -16,36 +16,32 @@ module.exports = {
     },
 
     run: async ({ interaction, client }) => {
-        if (!interaction.inGuild()) {
-            interaction.reply("You can only run this command inside a server.");
+        try {
+            const amount = interaction.options.getNumber("amount");
+
+            const user = await User.findOne({ userId: interaction.user.id, guildId: interaction.guild.id });
+
+            if (amount < 5000) {
+                await interaction.reply("You must deposit at least $5000");
+                return;
+            }
+
+            if (amount > user.balance) {
+                await interaction.reply("You don't have enough money to deposit");
+                return;
+            }
+
+            const amountDeposit = Number(amount);
+
+            user.balance -= amountDeposit;
+            user.bank += amountDeposit;
+
+            await user.save();
+
+            interaction.reply(`You deposit **$${amount.toLocaleString()}** to your bank.\nNow your bank have **$${user.bank.toLocaleString()}**`);
+        } catch (error) {
+            interaction.reply("Failed to deposit. Please try again");
+            console.log("Failed to deposit" + error);
         }
-
-        const amount = interaction.options.getNumber("amount");
-
-        await interaction.deferReply();
-
-        const targetUserId = interaction.member.id;
-
-        const user = await User.findOne({
-            userId: targetUserId,
-            guildId: interaction.guild.id
-        });
-
-        if (amount < 5000) {
-            interaction.editReply("You must deposit at least $5000");
-            return;
-        }
-
-        if (amount > user.balance) {
-            interaction.editReply("You don't have enough money to deposit");
-        }
-
-        const amountDeposit = Number(amount);
-
-        user.balance -= amountDeposit;
-        user.bank += amountDeposit;
-        await user.save();
-
-        interaction.editReply(`Your bank now have **$${user.bank}**`);
     }
 };

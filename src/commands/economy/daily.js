@@ -33,11 +33,6 @@ module.exports = {
                 }
 
                 user.lastDaily = new Date();
-            } else {
-                user = new User({
-                    ...query,
-                    lastDaily: new Date()
-                });
             }
 
             user.balance += dailyAmount;

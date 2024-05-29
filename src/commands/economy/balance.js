@@ -1,3 +1,4 @@
+const { EmbedBuilder } = require("discord.js");
 const User = require("../../schemas/user");
 
 module.exports = {
@@ -7,26 +8,37 @@ module.exports = {
     },
 
     run: async ({ interaction, client }) => {
-        if (!interaction.inGuild()) {
-            interaction.reply("You can only run this command inside a server.");
-            return;
-        }
-
         try {
-            const targetUserId = interaction.member.id;
+            const hasUser = await User.findOne({ userId: interaction.user.id, guildId: interaction.guild.id });
 
-            await interaction.deferReply();
-
-            const user = await User.findOne({ userId: targetUserId, guildId: interaction.guild.id });
-
-            if (!user) {
-                interaction.editReply(`<@${targetUserId}> doesn't have a profile yet.`);
+            if (!hasUser) {
+                await interaction.reply("You don't have any balance show.\nType /start to create balance");
                 return;
             }
 
-            interaction.editReply(`Your balance is **$${user.balance}**\nYour bank is **$${user.bank}**`);
+            const balanceEmbeds = new EmbedBuilder()
+                .setTitle(`${interaction.user.globalName} Balance`)
+                .setColor(0xc3f4ff)
+                .addFields(
+                    {
+                        name: "Balance",
+                        value: `**$${hasUser.balance.toLocaleString()}**`,
+                        inline: false
+                    },
+                    {
+                        name: "Bank",
+                        value: `**$${hasUser.bank.toLocaleString()}**`,
+                        inline: false
+                    }
+                )
+                .setTimestamp();
+
+            interaction.reply({
+                embeds: [balanceEmbeds]
+            });
         } catch (error) {
-            console.log(error);
+            console.log("Failed to show balance" + error);
+            interaction.reply("Failed to show balance");
         }
     }
 };
