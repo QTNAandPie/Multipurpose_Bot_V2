@@ -1,5 +1,5 @@
 const { EmbedBuilder } = require("@discordjs/builders");
-const { Client, Interaction, ApplicationCommandOptionType } = require("discord.js");
+const { ApplicationCommandOptionType } = require("discord.js");
 const moment = require("moment");
 
 module.exports = {
@@ -21,14 +21,14 @@ module.exports = {
     },
 
     run: async ({ interaction, client }) => {
-        const user = interaction.options.getUser("target-user") || interaction.user;
-        const member = await interaction.guild.members.fetch(user.id);
-        const avatarUser = user.displayAvatarURL({ size: 256 });
-        const roleMember = member.roles.cache.filter((role) => role.id !== interaction.guild.id).map((role) => role.toString());
-        const nickname = member.displayName || "None";
-
         try {
-            const profile = new EmbedBuilder()
+            const user = interaction.options.getUser("target-user") || interaction.user;
+            const member = await interaction.guild.members.fetch(user.id);
+            const avatarUser = user.displayAvatarURL({ size: 256 });
+            const roleMember = member.roles.cache.filter((role) => role.id !== interaction.guild.id).map((role) => role.toString());
+            const nickname = member.displayName || "None";
+
+            const profileStatus = new EmbedBuilder()
                 .setTitle(`${nickname}'s Profile`)
                 .setColor(0x33ccff)
                 .setThumbnail(avatarUser)
@@ -52,9 +52,9 @@ module.exports = {
                     }
                 );
 
-            interaction.reply({ embeds: [profile] });
+            interaction.reply({ embeds: [profileStatus] });
         } catch (error) {
-            interaction.editReply("This command may got issue to run. Please try again");
+            interaction.reply("This command may got issue to run. Please try again");
             console.log(error);
         }
     }

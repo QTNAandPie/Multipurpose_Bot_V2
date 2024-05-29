@@ -1,4 +1,5 @@
 /node_modules/
+/.github/
 
 .prettierrc.json
 package-lock.json
