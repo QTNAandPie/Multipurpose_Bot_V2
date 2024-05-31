@@ -1,4 +1,4 @@
-![Asset Example](/assets/Bg%20static.jpg)
+![Asset Example](/assets/Bg%20static%20(9300x2800).jpg)
 
 # Multipurpose Bot V2 Repository
 This bot was created via Javascript (Maybe got the small issue to run so don't worry ^^). By running with slash command, making easy to run command. This is also the template for beginner to make the bot from discord.js
