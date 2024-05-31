@@ -29,6 +29,11 @@ module.exports = {
                         name: "Bank",
                         value: `**$${hasUser.bank.toLocaleString()}**`,
                         inline: false
+                    },
+                    {
+                        name: "XP",
+                        value: `${hasUser.xp}/${hasUser.requireLevel} (Level: ${hasUser.level})`,
+                        inline: false
                     }
                 )
                 .setTimestamp();
@@ -38,7 +43,6 @@ module.exports = {
             });
         } catch (error) {
             console.log("Failed to show balance" + error);
-            interaction.reply("Failed to show balance");
         }
     }
 };

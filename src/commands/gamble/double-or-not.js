@@ -7,6 +7,12 @@ function randomArray(arr) {
     return item;
 }
 
+function getRandomXP(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 module.exports = {
     data: {
         name: "double-or-not",
@@ -23,10 +29,13 @@ module.exports = {
 
     run: async ({ interaction, client }) => {
         try {
+            const xpToGive = getRandomXP(1, 3);
+
             const amount = interaction.options.getNumber("amount");
 
-            let user = await User.findOne({
-                userId: interaction.user.id
+            const user = await User.findOne({
+                userId: interaction.user.id,
+                guildId: interaction.guild.id
             });
 
             if (amount < 50) {
@@ -55,13 +64,27 @@ module.exports = {
 
             const amountWon = Number(amount);
 
+            if (user) {
+                user.xp += xpToGive;
+
+                if (user.xp > user.requireLevel) {
+                    user.xp = 0;
+                    user.level += 1;
+                    user.requireLevel += 100;
+                }
+
+                await user.save().catch((e) => {
+                    console.log(`Error saving updated level ${e}`);
+                    return;
+                });
+            }
+
             user.balance += amountWon;
             await user.save();
 
-            interaction.reply(`WooW, you won **+$${amountWon}**!.\nYour balance now is: **$${user.balance}**`);
+            interaction.reply(`WooW, you won **+$${amountWon.toLocaleString()}**! And you got **${xpToGive} XP**.\nYour balance now is: **$${user.balance.toLocaleString()}**`);
         } catch (error) {
             console.log("Failed to play" + error);
-            interaction.reply("Failed to play");
         }
     }
 };
