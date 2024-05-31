@@ -32,7 +32,7 @@ module.exports = {
                     },
                     {
                         name: "XP",
-                        value: `${hasUser.xp}/${hasUser.requireLevel} (Level: ${hasUser.level})`,
+                        value: `${hasUser.xp}/${hasUser.requireXP} (Level: ${hasUser.level})`,
                         inline: false
                     }
                 )

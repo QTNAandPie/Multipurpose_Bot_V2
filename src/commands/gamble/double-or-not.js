@@ -67,7 +67,7 @@ module.exports = {
             if (user) {
                 user.xp += xpToGive;
 
-                if (user.xp > user.requireLevel) {
+                if (user.xp > user.requireXP) {
                     user.xp = 0;
                     user.level += 1;
                     user.requireLevel += 100;
