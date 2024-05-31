@@ -29,7 +29,7 @@ const userSchema = new Schema({
         type: Number,
         default: 1
     },
-    requireLevel: {
+    requireXP: {
         type: Number,
         default: 100
     }
