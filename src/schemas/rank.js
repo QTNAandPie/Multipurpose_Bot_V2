@@ -15,7 +15,11 @@ const rankSchema = new Schema({
     },
     level: {
         type: Number,
-        default: 0
+        default: 1
+    },
+    requireXP: {
+        type: Number,
+        default: 500
     }
 });
 

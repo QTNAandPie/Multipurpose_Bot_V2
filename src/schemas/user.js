@@ -20,6 +20,18 @@ const userSchema = new Schema({
     bank: {
         type: Number,
         default: 0
+    },
+    xp: {
+        type: Number,
+        default: 0
+    },
+    level: {
+        type: Number,
+        default: 1
+    },
+    requireLevel: {
+        type: Number,
+        default: 100
     }
 });
 
