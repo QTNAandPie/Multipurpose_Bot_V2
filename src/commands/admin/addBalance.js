@@ -1,6 +1,6 @@
 const { ApplicationCommandOptionType } = require("discord.js");
 const User = require("../../schemas/user");
-const { ownerId } = require('../../../config.json')
+const { ownerId } = require("../../../config.json");
 
 function AdminOrOwner(userId) {
     const AdminOrOwner = ownerId;
@@ -23,12 +23,10 @@ module.exports = {
 
     run: async ({ interaction, client }) => {
         if (!AdminOrOwner(interaction.user.id)) {
-            return interaction.reply(
-                {
-                    content : "You don't have permission to use this command.",
-                    ephemeral : true
-                }
-            );
+            return interaction.reply({
+                content: "You don't have permission to use this command.",
+                ephemeral: true
+            });
         }
 
         const amount = interaction.options.getNumber("amount");
@@ -36,13 +34,11 @@ module.exports = {
         const user = await User.findOne({ userId: interaction.user.id, guildId: interaction.guild.id });
 
         if (!user) {
-            return interaction.reply(
-                {
-                    content : "User not found",
-                    ephemeral : true
-                }
-            );
-        };
+            return interaction.reply({
+                content: "User not found",
+                ephemeral: true
+            });
+        }
 
         user.balance += amount;
 
