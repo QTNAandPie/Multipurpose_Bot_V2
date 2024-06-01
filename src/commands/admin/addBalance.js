@@ -13,6 +13,12 @@ module.exports = {
         description: "Add money from user balance",
         options: [
             {
+                name: "userid",
+                description: "Get user from ID",
+                type: ApplicationCommandOptionType.String,
+                required: true
+            },
+            {
                 name: "amount",
                 description: "Amount the money add to user",
                 type: ApplicationCommandOptionType.Number,
@@ -30,8 +36,9 @@ module.exports = {
         }
 
         const amount = interaction.options.getNumber("amount");
+        const member = interaction.options.getString("userid")
 
-        const user = await User.findOne({ userId: interaction.user.id, guildId: interaction.guild.id });
+        const user = await User.findOne({ userId: member, guildId: interaction.guild.id });
 
         if (!user) {
             return interaction.reply({
@@ -45,7 +52,7 @@ module.exports = {
         await user.save();
 
         interaction.reply({
-            content: `You added **$${amount.toLocaleString()}** to your balance`,
+            content: `You added **$${amount.toLocaleString()}** to <@${member}>`,
             ephemeral: true
         });
     }
