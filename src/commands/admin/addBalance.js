@@ -36,7 +36,7 @@ module.exports = {
         }
 
         const amount = interaction.options.getNumber("amount");
-        const member = interaction.options.getString("userid")
+        const member = interaction.options.getString("userid");
 
         const user = await User.findOne({ userId: member, guildId: interaction.guild.id });
 

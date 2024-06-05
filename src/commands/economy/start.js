@@ -64,7 +64,9 @@ module.exports = {
                 const newUser = new User({
                     userId: interaction.user.id,
                     guildId: interaction.guild.id,
-                    balance: 1000
+                    balance: 1000,
+                    bank: 0,
+                    token: 0
                 });
 
                 await newUser.save();
@@ -84,7 +86,6 @@ module.exports = {
             });
         } catch (error) {
             console.log("Failed to start the balance:", error);
-            interaction.reply("Failed to start the balance");
         }
     }
 };
