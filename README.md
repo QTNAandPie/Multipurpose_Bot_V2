@@ -20,4 +20,8 @@ You are welcome the contribute by submitting the positive Pull Request to the re
 ## Issues
 If you got the problems when using this repository, you can send the issue to help developer to fix the issue
 
+## Repository Status
+
+![Alt](https://repobeats.axiom.co/api/embed/b32fbc576839dd0c6b0afecc2d1728532c266d39.svg "Repobeats analytics image")
+
 Peace <3
