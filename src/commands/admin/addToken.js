@@ -9,7 +9,7 @@ function AdminOrOwner(userId) {
 
 module.exports = {
     data: {
-        name: "addbal",
+        name: "addtoken",
         description: "Add money from user balance",
         options: [
             {
@@ -20,7 +20,7 @@ module.exports = {
             },
             {
                 name: "amount",
-                description: "Amount the money add to user",
+                description: "Amount the token add to user",
                 type: ApplicationCommandOptionType.Number,
                 required: true
             }
@@ -47,12 +47,12 @@ module.exports = {
             });
         }
 
-        user.balance += amount;
+        user.token += amount;
 
         await user.save();
 
         interaction.reply({
-            content: `You added **$${amount.toLocaleString()}** to <@${member}>`,
+            content: `You added **${amount.toLocaleString()}** tokens to <@${member}>`,
             ephemeral: true
         });
     }
