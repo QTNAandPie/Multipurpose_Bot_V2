@@ -1,8 +1,6 @@
 const { Client, Interaction, ApplicationCommandOptionType, AttachmentBuilder } = require("discord.js");
 const { Font, RankCardBuilder } = require("canvacord");
-const calculateLevelXp = require("../../utils/calculateLevelXP");
 const Rank = require("../../schemas/rank");
-const calculateLevelXP = require("../../utils/calculateLevelXP");
 
 module.exports = {
     /**
@@ -68,7 +66,7 @@ module.exports = {
                 .setRank(currentRank)
                 .setLevel(fetchedRank.level)
                 .setCurrentXP(fetchedRank.xp)
-                .setRequiredXP(calculateLevelXP(fetchedRank.level))
+                .setRequiredXP(fetchedRank.requireXP)
                 .setStatus(targetUserObj.presence.status)
                 .setDisplayName(displayUser)
                 .setUsername(targetUserObj.user.username);

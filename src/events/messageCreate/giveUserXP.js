@@ -1,5 +1,4 @@
 const { Client, Message } = require("discord.js");
-const calculateLevelXp = require("../../utils/calculateLevelXP");
 const rank = require("../../schemas/rank");
 const cooldowns = new Set();
 
@@ -31,9 +30,10 @@ module.exports = async (message, client) => {
         if (level) {
             level.xp += xpToGive;
 
-            if (level.xp > calculateLevelXp(level.level)) {
+            if (level.xp > level.requireXP) {
                 level.xp = 0;
                 level.level += 1;
+                level.requireXP += 250
 
                 message.channel.send(`${message.member} you have leveled up to **level ${level.level}**.`);
             }
