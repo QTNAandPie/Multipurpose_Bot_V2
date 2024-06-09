@@ -1,5 +1,6 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js");
 const User = require("../../schemas/user");
+const Premium = require("../../schemas/premium-user")
 
 module.exports = {
     data: {
@@ -10,6 +11,7 @@ module.exports = {
     run: async ({ interaction, client }) => {
         try {
             const existingUser = await User.findOne({ userId: interaction.user.id });
+            const premiumUser = await Premium.findOne({ userId : interaction.user.id })
 
             if (existingUser) {
                 await interaction.reply("Your already have a balance");
@@ -69,7 +71,18 @@ module.exports = {
                     token: 0
                 });
 
+                const newPremium = new Premium({
+                    userId : interaction.user.id,
+                    guildId : interaction.user.id,
+                    isPremium : false,
+                    redeemedBy : [],
+                    redeemedAt : null,
+                    expiresAt : null,
+                    plan : null,
+                })
+
                 await newUser.save();
+                await newPremium.save()
 
                 const successMessage = "Your account has been created balance and started at **$1,000**";
 

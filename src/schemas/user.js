@@ -21,6 +21,10 @@ const userSchema = new Schema({
         type: Number,
         default: 0
     },
+    token : {
+        type : Number,
+        default : 0
+    },
     xp: {
         type: Number,
         default: 0

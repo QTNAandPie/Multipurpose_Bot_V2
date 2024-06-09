@@ -70,7 +70,7 @@ module.exports = {
                 if (user.xp > user.requireXP) {
                     user.xp = 0;
                     user.level += 1;
-                    user.requireLevel += 100;
+                    user.requireLevel += 175;
                 }
 
                 await user.save().catch((e) => {

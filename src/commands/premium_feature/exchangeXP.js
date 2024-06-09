@@ -65,7 +65,7 @@ module.exports = {
                     if (user.xp > user.requireXP) {
                         user.xp = 0;
                         user.level += 1;
-                        user.requireXP += 100;
+                        user.requireXP += 175;
                     }
 
                     await user.save();

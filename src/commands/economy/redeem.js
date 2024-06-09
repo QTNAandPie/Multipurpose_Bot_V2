@@ -53,7 +53,7 @@ module.exports = {
 
             await premiumUser.save();
 
-            await findCode.deleteOne({ code : code }) // One-time gift code
+            await findCode.deleteOne({ code: code }); // One-time gift code
 
             interaction.reply({
                 content: `
