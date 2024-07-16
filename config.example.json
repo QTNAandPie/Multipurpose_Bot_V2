@@ -1,5 +1,5 @@
 {
-    "ownerId": , // Put your ID here (you can put another ID with array but be careful to put another ID)
-    "clientId": , // Bot ID
-    "guildId": // Server ID
+    //"ownerId":   Put your ID here (you can put another user ID with array but be careful to put another user ID)
+    //"clientId":   Bot ID
+    //"guildId":  Server ID
 }
