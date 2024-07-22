@@ -10,7 +10,7 @@ This bot was created via Javascript (Maybe got the small issue to run so don't w
 Javascript Runtime:
 
 - [NodeJS](https://nodejs.org/) - Version 16 or higher (Recommend)
-- [Bun](https://bun.sh/) - Previously only available for Linux and MacOS, now available on Windows 
+- [Bun](https://bun.sh/)
 - [PNPM](https://pnpm.io/)
 - [Yarn](https://yarnpkg.com/)
 
