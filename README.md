@@ -25,7 +25,7 @@ Package:
 You are welcome the contribute by submitting the positive Pull Request to the repository
 
 ## Issues
-If you got the or new feature in this repository , you can send the issue to help developer to fix the issue
+If you got the bug or new feature idea in this repository , you can send the issue to help developer to fix the issue
 
 ## Repository Status
 
