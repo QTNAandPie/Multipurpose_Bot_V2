@@ -29,7 +29,7 @@ If you got the bug or new feature idea in this repository , you can send the iss
 
 ## Repository Status
 
-![Alt](https://repobeats.axiom.co/api/embed/b32fbc576839dd0c6b0afecc2d1728532c266d39.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/b32fbc576839dd0c6b0afecc2d1728532c266d39.svg "Repository Status")
 
 > [!NOTE]\
 > This repository status for reference only
