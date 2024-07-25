@@ -6,7 +6,8 @@ package-lock.json
 package.json
 
 .env.example
-.config.example.json
+config.example.json
+config.json
 
 README.md
 run.bat

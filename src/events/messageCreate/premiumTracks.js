@@ -8,25 +8,25 @@ const Premium = require("../../schemas/premium-user");
  */
 
 module.exports = async (message, client) => {
-    const userPremium = await Premium.find({ isPremium: true });
+	const userPremium = await Premium.find({ isPremium: true });
 
-    try {
-        if (!userPremium.length) return;
+	try {
+		if (!userPremium.length) return;
 
-        userPremium.forEach(async (premium) => {
-            if (Date.now() >= premium.expiresAt) {
-                premium.isPremium = false;
-                premium.redeemedBy = [];
-                premium.redeemedAt = null;
-                premium.expiresAt = null;
-                premium.plan = null;
+		userPremium.forEach(async (premium) => {
+			if (Date.now() >= premium.expiresAt) {
+				premium.isPremium = false;
+				premium.redeemedBy = [];
+				premium.redeemedAt = null;
+				premium.expiresAt = null;
+				premium.plan = null;
 
-                await premium.save();
+				await premium.save();
 
-                message.channel.send("Your premium have been expired");
-            }
-        });
-    } catch (error) {
-        console.log("Failed to tracks premium user\n" + error);
-    }
+				message.channel.send("Your premium have been expired");
+			}
+		});
+	} catch (error) {
+		console.log("Failed to tracks premium user\n" + error);
+	}
 };
