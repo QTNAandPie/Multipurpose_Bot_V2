@@ -33,7 +33,7 @@ module.exports = {
 			user.balance += user.daily;
 			await user.save();
 
-			interaction.reply(`**$${user.daily}** was added to your balance. Your balance now is **$${user.balance}**`);
+			interaction.reply(`**$${user.daily}** was added to your balance. Your balance now is **$${Math.floor(user.balance).toLocaleString()}**`);
 
 			user.daily = user.daily * 1.05;
 			await user.save();

@@ -19,7 +19,7 @@ module.exports = {
 		const xpToGive = getRandomXP(5, 10);
 
 		let cooldown = await Cooldown.findOne({ userId: interaction.user.id });
-		let upgrade = await Upgrade.findOne({ userId : interaction.user.id });
+		let upgrade = await Upgrade.findOne({ userId: interaction.user.id });
 		const user = await User.findOne({ userId: interaction.user.id });
 
 		if (!user) {
@@ -50,9 +50,9 @@ module.exports = {
 
 		const level_boost = 1 + user.level * 0.1;
 
-		const mine_boost = 1 + upgrade.upgrade.mine.boost * 0.1
+		const mine_boost = 1 + upgrade.upgrade.mine.boost * 0.1;
 
-		const effeciency_boost = 1 + upgrade.upgrade.effeciency.boost * 0.01
+		const effeciency_boost = 1 + upgrade.upgrade.effeciency.boost * 0.01;
 
 		user.xp += xpToGive;
 
@@ -61,7 +61,7 @@ module.exports = {
 			return;
 		});
 
-		user.balance = user.balance + baseMineEarn * (level_boost + mine_boost + effeciency_boost)
+		user.balance = user.balance + baseMineEarn * (level_boost + mine_boost + effeciency_boost);
 		cooldown.mine.endAt = Date.now() + 120000;
 
 		await Promise.all([cooldown.save(), user.save()]);

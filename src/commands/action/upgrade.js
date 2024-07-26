@@ -1,6 +1,6 @@
 const User = require("../../schemas/user");
 const Upgrade = require("../../schemas/actions/upgrade_actions");
-const Premium = require("../../schemas/premium-user")
+const Premium = require("../../schemas/premium-user");
 const { EmbedBuilder, ButtonBuilder, ComponentType, ActionRowBuilder } = require("discord.js");
 
 module.exports = {
@@ -25,28 +25,28 @@ module.exports = {
 			});
 		}
 
-		const path = upgrade.upgrade
+		const path = upgrade.upgrade;
 
 		const upgradeEmbed = new EmbedBuilder()
 			.setTitle("Upgrade action")
 			.setDescription("Upgrade your action to get more money")
 			.addFields(
 				{
-					name : "Work",
-					value : `+${Math.floor(path.work.boost + 10).toLocaleString()}% = $**${Math.floor(path.work.cost).toLocaleString()}**`,
-					inline : false,
+					name: "Work",
+					value: `+${Math.floor(path.work.boost + 10).toLocaleString()}% = $**${Math.floor(path.work.cost).toLocaleString()}**`,
+					inline: false,
 				},
 				{
-					name : "Mine",
-					value : `+${Math.floor(path.mine.boost + 10).toLocaleString()}% = $**${Math.floor(path.mine.cost).toLocaleString()}**`,
-					inline : false,
+					name: "Mine",
+					value: `+${Math.floor(path.mine.boost + 10).toLocaleString()}% = $**${Math.floor(path.mine.cost).toLocaleString()}**`,
+					inline: false,
 				},
 				{
-					name : "Effeciency (Premium)",
-					value : `+${Math.floor(path.effeciency.boost + 100).toLocaleString()}% = **${Math.floor(path.effeciency.cost).toLocaleString()}** Token`,
-					inline : false,
-				},
-			)
+					name: "Effeciency (Premium)",
+					value: `+${Math.floor(path.effeciency.boost + 100).toLocaleString()}% = **${Math.floor(path.effeciency.cost).toLocaleString()}** Token`,
+					inline: false,
+				}
+			);
 
 		const WorkButton = new ButtonBuilder().setCustomId("upwork").setLabel("Upgrade Work").setStyle("Primary");
 
@@ -73,75 +73,75 @@ module.exports = {
 			}
 
 			switch (i.customId) {
-				case "upwork" : 
+				case "upwork":
 					if (user.balance < path.work.cost) {
-						await interaction.editReply("You don't have money to upgrade work")
-						return
+						await interaction.editReply("You don't have money to upgrade work");
+						return;
 					}
 
-					user.balance -= path.work.cost
-					await user.save()
+					user.balance -= path.work.cost;
+					await user.save();
 
-					path.work.boost += 10
-					path.work.cost *= 1.05
-					await upgrade.save()
+					path.work.boost += 10;
+					path.work.cost *= 1.05;
+					await upgrade.save();
 
 					interaction.editReply({
-						embeds : [],
-						content : `Complete upgrade work action\nNext upgrade is cost $${Math.floor(path.work.cost).toLocaleString()}`
-					})
+						embeds: [],
+						content: `Complete upgrade work action\nNext upgrade is cost $${Math.floor(path.work.cost).toLocaleString()}`,
+					});
 
 					collection.stop();
 					break;
-				
-				case "upmine" :
+
+				case "upmine":
 					if (user.balance < path.mine.cost) {
-						await interaction.editReply("You don't have money to upgrade mine")
-						return
+						await interaction.editReply("You don't have money to upgrade mine");
+						return;
 					}
 
-					user.balance -= path.mine.cost
-					await user.save()
+					user.balance -= path.mine.cost;
+					await user.save();
 
-					path.mine.boost += 10
-					path.mine.cost *= 1.05
-					await upgrade.save()
+					path.mine.boost += 10;
+					path.mine.cost *= 1.05;
+					await upgrade.save();
 
 					interaction.editReply({
-						embeds : [],
-						content : `Complete upgrade mine action\nNext upgrade is cost $${Math.floor(path.mine.cost).toLocaleString()}`
-					})
+						embeds: [],
+						content: `Complete upgrade mine action\nNext upgrade is cost $${Math.floor(path.mine.cost).toLocaleString()}`,
+					});
 
 					collection.stop();
 					break;
 
-				case "upeffecientcy" :
+				case "upeffecientcy":
 					if (premiumUser.isPremium === false) {
 						await interaction.reply("The effeciency upgrade only use for premium tier\nPlease upgrade to premium tier to upgrade your effeciency action!");
 						return;
 					}
 
 					if (user.token < path.effeciency.cost) {
-						await interaction.editReply("You don't have token to upgrade effeciency")
-						return
+						await interaction.editReply("You don't have token to upgrade effeciency");
+						return;
 					}
 
-					user.token -= path.effeciency.cost
-					await user.save()
+					user.token -= path.effeciency.cost;
+					await user.save();
 
-					path.effeciency.boost += 100
-					path.effeciency.cost *= 1.1
-					await upgrade.save()
+					path.effeciency.boost += 100;
+					path.effeciency.cost *= 1.1;
+					await upgrade.save();
 
 					interaction.editReply({
-						embeds : [],
-						content : `Complete upgrade action effeciency\nNext upgrade is cost ${Math.floor(path.effeciency.cost).toLocaleString()} Tokens`
-					})
+						embeds: [],
+						content: `Complete upgrade action effeciency\nNext upgrade is cost ${Math.floor(path.effeciency.cost).toLocaleString()} Tokens`,
+					});
 
 					collection.stop();
 					break;
 			}
-		})
+		});
 
 		collection.on("end", (collected) => {
 			interaction.editReply({

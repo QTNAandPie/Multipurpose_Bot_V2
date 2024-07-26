@@ -20,7 +20,7 @@ module.exports = {
 				},
 			});
 
-			await workCooldown.save()
+			await workCooldown.save();
 		}
 
 		if (!mineCooldown) {
@@ -31,7 +31,7 @@ module.exports = {
 				},
 			});
 
-			await mineCooldown.save()
+			await mineCooldown.save();
 		}
 
 		const { default: prettyMs } = await import("pretty-ms");
