@@ -34,7 +34,7 @@ module.exports = {
 		botPermissions: [PermissionFlagsBits.MuteMembers],
 	},
 
-	run: async (client, interaction) => {
+	run: async ({client, interaction}) => {
 		const mentionable = interaction.options.get("target-user").value;
 		const duration = interaction.options.get("duration").value; // 1d, 1 day, 1s 5s, 5m
 		const reason = interaction.options.get("reason")?.value || "No reason provided";

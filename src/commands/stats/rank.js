@@ -58,9 +58,9 @@ module.exports = {
 		let currentRank = allRank.findIndex((lvl) => lvl.userId === targetUserId) + 1;
 
 		try {
-			Font.fromFileSync("src/fonts/DIN-Medium.ttf");
+			Font.fromFileSync("src/fonts/GMV_DIN_Pro-Bold.ttf");
 			const rank = new RankCardBuilder()
-				.setBackground("#23272a")
+				.setBackground("./assets/Bg-static-(930x280).jpg")
 				.setAvatar(targetUserObj.user.displayAvatarURL({ size: 128 }))
 				.setRank(currentRank)
 				.setLevel(fetchedRank.level)
