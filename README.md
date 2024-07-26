@@ -4,8 +4,10 @@
 This bot was created via Javascript (Maybe got the small issue to run so don't worry ^^). By running with slash command, making easy to run command. This is also the template for beginner to make the bot from discord.js
 
 > [!IMPORTANT]\
-> This project use __discord.js V14__
+> This project use __discord.js V14__ and __CommandKit (Discord.js Handler Command Framework)__
 
+> [!NOTE]\
+> The **<ins>Multipurpose Bot V2 Repository</ins>** is the bot open sourch so you can fork and clone this repository with no time :>
 ## Requirements
 Javascript Runtime:
 
