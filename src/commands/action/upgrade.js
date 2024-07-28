@@ -54,7 +54,7 @@ module.exports = {
 
 		const EfficiencyButton = new ButtonBuilder().setCustomId("upefficientcy").setLabel("Upgrade Efficientcy").setStyle("Primary");
 
-		const row = new ActionRowBuilder().addComponents(WorkButton, MineButton, EffeciencyButton);
+		const row = new ActionRowBuilder().addComponents(WorkButton, MineButton, EfficiencyButton);
 
 		const upgradeMessage = await interaction.reply({
 			embeds: [upgradeEmbed],
