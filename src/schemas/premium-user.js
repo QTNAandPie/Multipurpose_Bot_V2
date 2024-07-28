@@ -29,6 +29,10 @@ const premiumSchema = new Schema({
 		type: String,
 		default: null,
 	},
+	lastPremiumDaily: {
+		type: Date,
+		default: null,
+	},
 });
 
 module.exports = model("Premium", premiumSchema);
