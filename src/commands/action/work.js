@@ -58,11 +58,11 @@ module.exports = {
 
 		const work_boost = 1 + upgrade.upgrade.work.boost * 0.1;
 
-		const effeciency_boost = 1 + upgrade.upgrade.effeciency.boost * 0.01;
+		const efficiency_boost = 1 + upgrade.upgrade.efficiency.boost * 0.01;
 
 		user.xp += xpToGive;
 
-		user.balance = user.balance + earnMoney * (level_boost + work_boost + effeciency_boost);
+		user.balance = user.balance + earnMoney * (level_boost + work_boost + efficiency_boost);
 		cooldown.work.endAt = Date.now() + 3600000;
 
 		await Promise.all([cooldown.save(), user.save()]);
@@ -85,7 +85,7 @@ module.exports = {
 				.addFields(
 					{
 						name: "You got",
-						value: `**$${Math.floor(earnMoney * (level_boost + work_boost + effeciency_boost)).toLocaleString()}**`,
+						value: `**$${Math.floor(earnMoney * (level_boost + work_boost + efficiency_boost)).toLocaleString()}**`,
 						inline: false,
 					},
 					{

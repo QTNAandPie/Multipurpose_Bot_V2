@@ -52,7 +52,7 @@ module.exports = {
 
 		const mine_boost = 1 + upgrade.upgrade.mine.boost * 0.1;
 
-		const effeciency_boost = 1 + upgrade.upgrade.effeciency.boost * 0.01;
+		const efficiency_boost = 1 + upgrade.upgrade.efficiency.boost * 0.01;
 
 		user.xp += xpToGive;
 
@@ -61,7 +61,7 @@ module.exports = {
 			return;
 		});
 
-		user.balance = user.balance + baseMineEarn * (level_boost + mine_boost + effeciency_boost);
+		user.balance = user.balance + baseMineEarn * (level_boost + mine_boost + efficiency_boost);
 		cooldown.mine.endAt = Date.now() + 120000;
 
 		await Promise.all([cooldown.save(), user.save()]);
@@ -86,7 +86,7 @@ module.exports = {
 				.addFields(
 					{
 						name: "You got",
-						value: `**$${Math.floor(baseMineEarn * (level_boost + mine_boost + effeciency_boost))}**`,
+						value: `**$${Math.floor(baseMineEarn * (level_boost + mine_boost + efficiency_boost))}**`,
 						inline: false,
 					},
 					{

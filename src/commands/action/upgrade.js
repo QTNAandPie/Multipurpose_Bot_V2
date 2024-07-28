@@ -42,8 +42,8 @@ module.exports = {
 					inline: false,
 				},
 				{
-					name: "Effeciency (Premium)",
-					value: `+${Math.floor(path.effeciency.boost + 100).toLocaleString()}% = **${Math.floor(path.effeciency.cost).toLocaleString()}** Token`,
+					name: "Efficiency (Premium)",
+					value: `+${Math.floor(path.efficiency.boost + 100).toLocaleString()}% = **${Math.floor(path.efficiency.cost).toLocaleString()}** Token`,
 					inline: false,
 				}
 			);
@@ -52,7 +52,7 @@ module.exports = {
 
 		const MineButton = new ButtonBuilder().setCustomId("upmine").setLabel("Upgrade Mine").setStyle("Primary");
 
-		const EffeciencyButton = new ButtonBuilder().setCustomId("upeffecientcy").setLabel("Upgrade Effecientcy").setStyle("Primary");
+		const EfficiencyButton = new ButtonBuilder().setCustomId("upefficientcy").setLabel("Upgrade Efficientcy").setStyle("Primary");
 
 		const row = new ActionRowBuilder().addComponents(WorkButton, MineButton, EffeciencyButton);
 
@@ -115,27 +115,27 @@ module.exports = {
 					collection.stop();
 					break;
 
-				case "upeffecientcy":
+				case "upefficientcy":
 					if (premiumUser.isPremium === false) {
 						await interaction.reply("The effeciency upgrade only use for premium tier\nPlease upgrade to premium tier to upgrade your effeciency action!");
 						return;
 					}
 
-					if (user.token < path.effeciency.cost) {
-						await interaction.editReply("You don't have token to upgrade effeciency");
+					if (user.token < path.efficiency.cost) {
+						await interaction.editReply("You don't have token to upgrade efficiency");
 						return;
 					}
 
-					user.token -= path.effeciency.cost;
+					user.token -= path.efficiency.cost;
 					await user.save();
 
-					path.effeciency.boost += 100;
-					path.effeciency.cost *= 1.1;
+					path.efficiency.boost += 100;
+					path.efficiency.cost *= 1.1;
 					await upgrade.save();
 
 					interaction.editReply({
 						embeds: [],
-						content: `Complete upgrade action effeciency\nNext upgrade is cost ${Math.floor(path.effeciency.cost).toLocaleString()} Tokens`,
+						content: `Complete upgrade action efficiency\nNext upgrade is cost ${Math.floor(path.effeciency.cost).toLocaleString()} Tokens`,
 					});
 
 					collection.stop();

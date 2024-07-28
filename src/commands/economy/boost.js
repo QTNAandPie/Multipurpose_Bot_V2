@@ -24,7 +24,7 @@ module.exports = {
 			.setTitle("Boost status")
 			.setColor(0x86469c)
 			.setDescription(
-				`Level boost: ${Math.floor(level_boost).toLocaleString()}%\nMine boost: ${Math.floor(upgrade.upgrade.mine.boost).toLocaleString()}%\nWork boost: ${Math.floor(upgrade.upgrade.work.boost).toLocaleString()}%\nEffeciency boost: x${Math.floor(1 + upgrade.upgrade.effeciency.boost * 0.01).toLocaleString()}\nComing soon...`
+				`Level boost: ${Math.floor(level_boost).toLocaleString()}%\nMine boost: ${Math.floor(upgrade.upgrade.mine.boost).toLocaleString()}%\nWork boost: ${Math.floor(upgrade.upgrade.work.boost).toLocaleString()}%\nEfficiency boost: x${Math.floor(1 + upgrade.upgrade.efficiency.boost * 0.01).toLocaleString()}\nComing soon...`
 			)
 			.setTimestamp();
 		interaction.reply({ embeds: [boostEmbed] });

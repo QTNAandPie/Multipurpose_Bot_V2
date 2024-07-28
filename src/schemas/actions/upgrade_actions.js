@@ -31,7 +31,7 @@ const upgradeSchema = new Schema({
 			},
 		},
 
-		effeciency: {
+		efficiency: {
 			boost: {
 				type: Number,
 				default: 0,
