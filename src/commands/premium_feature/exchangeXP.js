@@ -120,6 +120,17 @@ module.exports = {
 					collection.stop();
 					break;
 			}
+
+			if (user.xp > user.requireXP) {
+				user.xp = 0;
+				user.level += 1;
+				user.requireXP += 175;
+			}
+		
+			await user.save().catch((e) => {
+				console.log(`Error saving updated level ${e}`);
+				return;
+			});
 		});
 
 		collection.on("end", (collected) => {

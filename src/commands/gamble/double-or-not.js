@@ -67,23 +67,21 @@ module.exports = {
 
 			const amountWon = Number(amount);
 
-			if (user) {
-				user.xp += xpToGive;
-
-				if (user.xp > user.requireXP) {
-					user.xp = 0;
-					user.level += 1;
-					user.requireLevel += 175;
-				}
-
-				await user.save().catch((e) => {
-					console.log(`Error saving updated level ${e}`);
-					return;
-				});
-			}
+			user.xp += xpToGive;
 
 			user.balance += amountWon;
 			await user.save();
+
+			if (user.xp > user.requireXP) {
+				user.xp = 0;
+				user.level += 1;
+				user.requireXP += 175;
+			}
+		
+			await user.save().catch((e) => {
+				console.log(`Error saving updated level ${e}`);
+				return;
+			});
 
 			interaction.reply(`WooW, you won **+$${amountWon.toLocaleString()}**! And you got **${xpToGive} XP**.\nYour balance now is: **$${user.balance.toLocaleString()}**`);
 		} catch (error) {

@@ -26,7 +26,7 @@ module.exports = {
 		botPermissions: [PermissionFlagsBits.KickMembers],
 	},
 
-	run: async ({client, interaction}) => {
+	run: async ({ client, interaction }) => {
 		const targetUserId = interaction.options.get("target-user").value;
 		const reason = interaction.options.get("reason")?.value || "No reason provided";
 

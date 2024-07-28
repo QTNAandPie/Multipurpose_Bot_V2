@@ -30,13 +30,25 @@ module.exports = {
 
 			user.lastDaily = new Date();
 
-			user.balance += user.daily;
+			user.balance += user.daily * (1 + user.level * 0.1);
 			await user.save();
 
-			interaction.reply(`**$${user.daily}** was added to your balance. Your balance now is **$${Math.floor(user.balance).toLocaleString()}**`);
-
-			user.daily = user.daily * 1.05;
-			await user.save();
+			const dailyEmbed = new EmbedBuilder()
+            .setTitle("Daily earn")
+            .setColor(0x7FABDE)
+            .addFields(
+                {
+                    name : "Money",
+                    value : `**$${Math.floor(user.daily * (1 + user.level * 0.1)).toLocaleString()}**`,
+                    inline : true
+                }
+            )
+            .setFooter({text : "Comeback in 24H"})
+		interaction.reply(
+			{
+                embeds : [dailyEmbed]
+            }
+		);
 		} catch (error) {
 			console.log(error);
 		}

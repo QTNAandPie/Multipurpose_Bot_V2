@@ -65,6 +65,19 @@ module.exports = {
 		cooldown.mine.endAt = Date.now() + 120000;
 
 		await Promise.all([cooldown.save(), user.save()]);
+		
+		if (user.xp > user.requireXP) {
+			user.xp = 0;
+			user.level += 1;
+			user.requireXP += 175;
+		}
+	
+		await user.save().catch((e) => {
+			console.log(`Error saving updated level ${e}`);
+			return;
+		});
+
+		
 
 		try {
 			const mineEmbed = new EmbedBuilder()

@@ -41,7 +41,7 @@ module.exports = {
 				},
 				{
 					name: "Token",
-					value: `**${hasUser.token.toLocaleString()}**`,
+					value: `**${Math.floor(hasUser.token).toLocaleString()}**`,
 					inline: true,
 				},
 				{

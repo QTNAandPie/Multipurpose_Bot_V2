@@ -66,6 +66,17 @@ module.exports = {
 		cooldown.work.endAt = Date.now() + 3600000;
 
 		await Promise.all([cooldown.save(), user.save()]);
+		
+		if (user.xp > user.requireXP) {
+			user.xp = 0;
+			user.level += 1;
+			user.requireXP += 175;
+		}
+	
+		await user.save().catch((e) => {
+			console.log(`Error saving updated level ${e}`);
+			return;
+		});
 
 		try {
 			const workEmbed = new EmbedBuilder()
