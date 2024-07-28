@@ -1,3 +1,4 @@
+const { EmbedBuilder } = require('discord.js')
 const User = require("../../schemas/user");
 
 module.exports = {

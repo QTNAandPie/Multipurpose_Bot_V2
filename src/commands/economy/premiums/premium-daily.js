@@ -9,8 +9,8 @@ module.exports = {
 	},
 
 	run: async ({ interaction, client }) => {
-		const premium = await Premium.findOne({ userId: interaction.user.id });
-		const user = await User.findOne({ userId: interaction.user.id });
+		const premium = await Premium.findOne({ userId: interaction.member.id });
+		const user = await User.findOne({ userId: interaction.member.id });
 
 		if (premium.isPremium === false) {
 			await interaction.reply("This command only for premium member\nPlease upgrade to premium tier to use this command!");
@@ -22,11 +22,11 @@ module.exports = {
 			return;
 		}
 
-		const currentDate = new Date().toDateString();
+		const currentPremiumDate = new Date().toDateString();
 
 		const lastPremiumDailyDate = premium.lastPremiumDaily?.toDateString();
 
-		if (lastPremiumDailyDate === currentDate) {
+		if (lastPremiumDailyDate === currentPremiumDate) {
 			await interaction.reply("You have already collected your premium dailies today. Come back tomorrow!");
 			return;
 		}
@@ -36,7 +36,7 @@ module.exports = {
 		user.balance += user.daily * (1 + user.level * 0.1);
 		user.token += 45 * (1 + user.level * 0.1);
 
-		await user.save();
+		await Promise.all([user.save(), premium.save()])
 
         const premiumDailyEmbed = new EmbedBuilder()
             .setTitle("Premium daily earn")

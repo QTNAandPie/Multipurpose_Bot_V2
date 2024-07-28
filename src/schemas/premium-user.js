@@ -31,7 +31,7 @@ const premiumSchema = new Schema({
 	},
 	lastPremiumDaily: {
 		type: Date,
-		default: null,
+		required: true,
 	},
 });
 
