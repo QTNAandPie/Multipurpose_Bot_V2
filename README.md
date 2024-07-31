@@ -8,6 +8,7 @@ This bot was created via Javascript (Maybe got the small issue to run so don't w
 
 > [!NOTE]\
 > The **<ins>Multipurpose Bot V2 Repository</ins>** is the bot open sourch so you can fork or clone this repository with no time :>
+
 ## Requirements
 Javascript Runtime:
 
@@ -35,5 +36,8 @@ If you got the bug or new feature idea in this repository , you can send the iss
 
 > [!NOTE]\
 > This repository status for reference only
+
+> [!WARNING]\
+> In some cases, this repository may temporarily stop pushing commits to allow for a testing period before pushing or reviewing errors in the repository.
 
 <p align="center">Peace <3</p>
