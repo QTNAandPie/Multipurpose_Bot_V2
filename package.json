@@ -13,7 +13,7 @@
   "dependencies": {
     "canvacord": "^6.0.2",
     "commandkit": "^0.1.10",
-    "dayjs": "^1.11.12",
+    "dayjs": "^1.11.13",
     "discord.js": "^14.15.2",
     "dotenv": "^16.4.5",
     "moment": "^2.30.1",
